@@ -26,6 +26,7 @@ public:
 signals:
     void back();
     void tomatoDurationChanged(int duration);
+    void finishPomodoro();
 
 private slots:
     void startPomodoro();    // 开始番茄钟

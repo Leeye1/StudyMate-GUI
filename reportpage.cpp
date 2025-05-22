@@ -27,8 +27,8 @@ void ReportPage::loadDataFromJson(const QString& path)
     for (int i = 0; i < sessions.size(); ++i) {
         const FocusSession& s = sessions[i];
 
-        // 有效性判断逻辑：专注时长 > 950% 则为“有效”
-        bool effective = (s.focus_minutes >= 0.8 * s.duration_minutes);
+        // 有效性判断逻辑：专注时长 > 90% 则为“有效” 后面还需要增加检测逻辑
+        bool effective = (s.focus_minutes >= 0.9 * s.duration_minutes);
 
         ui->tableReport->setItem(i, 0, new QTableWidgetItem(s.datetime));
         ui->tableReport->setItem(i, 1, new QTableWidgetItem(QString::number(s.duration_minutes)));
@@ -44,6 +44,21 @@ void ReportPage::loadDataFromJson(const QString& path)
 
 void ReportPage::saveSession() {
     FocusSession session;
+    /*
+struct DistractionData {
+    int action1 = 0;//行为1的分神次数
+    int action2 = 0;
+    int action3 = 0;
+    int total_time = 0;//所有分神动作的累积分神时间
+};
+
+struct FocusSession {
+    QString datetime;//日期+时间
+    int duration_minutes = 0;//本次番茄钟时长
+    int focus_minutes = 0;//本次专注时间等于durationtime-totaltime
+    DistractionData distractions;//distractions: 嵌套了上面定义的 DistractionData。
+};
+     */
     session.datetime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm ddd");
     session.duration_minutes = tomatoDuration;
 
@@ -72,3 +87,7 @@ void ReportPage::on_testButton_clicked()
     loadDataFromJson("data.json");
 }
 
+void ReportPage::updateJSON(){
+    saveSession();
+    loadDataFromJson("data.json");
+}

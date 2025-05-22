@@ -13,6 +13,7 @@ class ReportPage : public QWidget
 
 public slots:
     void setTomatoDuration(int duration);
+    void updateJSON();
 
 public:
     explicit ReportPage(QWidget *parent = nullptr);

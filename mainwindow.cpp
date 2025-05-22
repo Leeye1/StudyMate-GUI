@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->tomatoPage= new TomatoPage();
     this->reportPage= new ReportPage();
     connect(tomatoPage, &TomatoPage::tomatoDurationChanged, reportPage, &ReportPage::setTomatoDuration);
+    connect(tomatoPage, &TomatoPage::finishPomodoro, reportPage, &ReportPage::updateJSON);
     connect(ui->tomatoButton,&QPushButton::clicked,[=](){
         //把主窗口隐藏，第二个窗口界面显示
         this->hide();
