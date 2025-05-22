@@ -49,6 +49,7 @@ void TomatoPage::startPomodoro(){
     if(isRunning) return; //如果已经启动了番茄钟那么就不会响应
     isRunning=true;
     setTime();
+    emit tomatoDurationChanged(currentDuration);//设定了时间之后我就传递
     remainBreakSecond=3;
     timer->start(1000);
     ui->timeLabel->setText("剩余专注时长: "+timeString);
@@ -77,11 +78,12 @@ void TomatoPage::updateTime(){
 
 }
 void TomatoPage::endPomodoro(){
+    if(remainWorkSecond>0){
+        ///用户自己中断的话。。。。
+    }
     timer->stop();
     ui->timeLabel->setText("开始专注吧！");
     isRunning=false;
-    setTime();
-
 }
 
 void TomatoPage::timeConvert(int remainSecond){
@@ -113,8 +115,8 @@ void TomatoPage::returnMainwindow(){
 void TomatoPage::setTime(){
     //获取combo box数据
     QString selectedText = ui->workTimeComboBox->currentText(); // 例如 "25 分钟"
-    int workMinute = selectedText.toInt();
-    remainWorkSecond= workMinute * 60;
+    currentDuration = selectedText.toInt();
+    remainWorkSecond= currentDuration * 1;//这里暂时改成1 然后ui暂时改成3s这样方便调试
     timeConvert(remainWorkSecond);
 
 }

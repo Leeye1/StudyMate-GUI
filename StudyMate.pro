@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    jsonhandler.cpp \
     main.cpp \
     mainwindow.cpp \
     monitorpage.cpp \
@@ -17,10 +18,12 @@ SOURCES += \
     tomatopage.cpp
 
 HEADERS += \
+    jsonhandler.h \
     mainwindow.h \
     monitorpage.h \
     quotewidget.h \
     reportpage.h \
+    sessiondata.h \
     tomatopage.h
 
 FORMS += \

@@ -1,0 +1,27 @@
+{
+  "history": [
+    {
+      "datetime": "2025-06-20 19:30 周日",
+      "duration_minutes": 25,
+      "focus_minutes": 20,
+      "distractions": {
+        "action1": 2,
+        "action2": 1,
+        "action3": 0,
+        "total_time": 5
+      }
+    },
+    {
+      "datetime": "2025-06-21 08:00 周一",
+      "duration_minutes": 25,
+      "focus_minutes": 23,
+      "distractions": {
+        "action1": 1,
+        "action2": 0,
+        "action3": 1,
+        "total_time": 2
+      }
+    }
+  ]
+}
+

@@ -25,6 +25,8 @@ public:
 
 signals:
     void back();
+    void tomatoDurationChanged(int duration);
+
 private slots:
     void startPomodoro();    // 开始番茄钟
     void updateTime();       // 每秒更新一次剩余时间
@@ -38,6 +40,7 @@ private:
     QTimer* timer;
     int remainWorkSecond;
     int remainBreakSecond;
+    int currentDuration;
 
 
     bool isRunning;//检查番茄钟是否在运行的函数

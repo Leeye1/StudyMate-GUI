@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->tomatoPage= new TomatoPage();
+    this->reportPage= new ReportPage();
+    connect(tomatoPage, &TomatoPage::tomatoDurationChanged, reportPage, &ReportPage::setTomatoDuration);
     connect(ui->tomatoButton,&QPushButton::clicked,[=](){
         //把主窗口隐藏，第二个窗口界面显示
         this->hide();
@@ -15,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this->tomatoPage,&TomatoPage::back,[=](){
         this->tomatoPage->hide();
         this->show();
+    });
+    connect(ui->reportButton,&QPushButton::clicked,[=](){
+        //把主窗口隐藏，第二个窗口界面显示
+        this->hide();
+        this->reportPage->show();
     });
 
 }

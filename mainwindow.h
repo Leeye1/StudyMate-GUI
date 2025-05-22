@@ -22,6 +22,8 @@ public:
     ~MainWindow();
 
     TomatoPage* tomatoPage;
+    ReportPage* reportPage;
+    MonitorPage* monitorPage;
 
 
 private:

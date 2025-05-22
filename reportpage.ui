@@ -6,13 +6,69 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>633</width>
+    <height>479</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QTableWidget" name="tableReport">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>20</y>
+     <width>601</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="columnCount">
+    <number>6</number>
+   </property>
+   <column>
+    <property name="text">
+     <string>日期</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>时长</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>分神1</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>分神2</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>分神3</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>有效性</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="testButton">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>370</y>
+     <width>201</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Test Button</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
