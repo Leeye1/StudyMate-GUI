@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>633</width>
-    <height>479</height>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QTableWidget" name="tableReport">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>20</y>
+     <x>10</x>
+     <y>240</y>
      <width>601</width>
-     <height>301</height>
+     <height>131</height>
     </rect>
    </property>
    <property name="columnCount">
@@ -59,8 +59,8 @@
   <widget class="QPushButton" name="testButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>370</y>
+     <x>190</x>
+     <y>400</y>
      <width>201</width>
      <height>71</height>
     </rect>
@@ -68,6 +68,104 @@
    <property name="text">
     <string>Test Button</string>
    </property>
+  </widget>
+  <widget class="QPushButton" name="returnButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>601</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="totalReport">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>601</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>累计番茄时长</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>累计专注时长</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>平均专注时长</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>分神动作1</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>分神动作2</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>分神动作3</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>有效率</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QTableWidget" name="todayReport">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>601</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>今日番茄时长</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>今日专注时长</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>分神动作1</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>分神动作2</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>分神动作3</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>有效率</string>
+    </property>
+   </column>
   </widget>
  </widget>
  <resources/>

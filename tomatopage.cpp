@@ -1,6 +1,8 @@
 #include "tomatopage.h"
 #include "ui_tomatopage.h"
 #include "quotewidget.h"
+#include <QMessageBox>
+
 //时间加框和调整各个元素的字体颜色
 //提示音
 //有个番茄钟
@@ -29,8 +31,18 @@ TomatoPage::TomatoPage(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(ui->quotePlaceholder);
     layout->setContentsMargins(0, 0, 0, 0); // 可选：让布局更紧凑
     layout->addWidget(quoteWidget);
+    //intialize python process
+    pythonProcess = new QProcess(this);
+    pythonProcess->setProcessChannelMode(QProcess::MergedChannels);
+    connect(pythonProcess, &QProcess::readyReadStandardOutput, [=]() {
+        QString output = pythonProcess->readAll();
+        qDebug() << "Python 输出:" << output;
 
-
+        if (output.contains("__PYTHON_STARTED__")) {
+            // 可以设置一个标志 isPythonStarted = true;
+            isPythonStarted=true;
+        }
+    });
 
     connect(ui->startButton,&QPushButton::clicked,this,&TomatoPage::startPomodoro);
     //可以做一个选择时间的部分，这个逻辑应该在start部分检验
@@ -47,9 +59,14 @@ TomatoPage::~TomatoPage()
 
 void TomatoPage::startPomodoro(){
     if(isRunning) return; //如果已经启动了番茄钟那么就不会响应
+    //initialization
+    //run python script
+    createPythonProcess();
+    if(!isPythonStarted)
     isRunning=true;
     setTime();
     remainBreakSecond=3;
+    //starting timing
     timer->start(1000);
     ui->timeLabel->setText("剩余专注时长: "+timeString);
 }
@@ -60,6 +77,11 @@ void TomatoPage::updateTime(){
         if(remainWorkSecond==0){
             tomatoNum++;
             showTomato(tomatoNum);
+            //时长为0时结束python脚本
+            killPythonProcess();
+            emit updateData();//在结束脚本后，更新数据
+            isUpdate=true;
+
         }
         remainWorkSecond--;
         //qDebug() << timeString;
@@ -85,10 +107,14 @@ void TomatoPage::endPomodoro(){
     }
     else{
         //1. 番茄钟的时长在开始的时候就已经返回了
-        //2. 控制python脚本结束并且写入temp.json文件
+        //2. 控制python脚本结束
+        killPythonProcess();
         //3. 发送endPomodoro信号调用文件读写
-        emit finishPomodoro();
-
+        if(isUpdate){
+            isUpdate=false;
+            return;
+        }
+        emit updateData();
     }
 }
 
@@ -126,4 +152,19 @@ void TomatoPage::setTime(){
     timeConvert(remainWorkSecond);
     emit tomatoDurationChanged(currentDuration);//设定了时间之后我就传递
 
+}
+
+void TomatoPage::createPythonProcess(){
+
+    if (pythonProcess->state() == QProcess::NotRunning) {
+        pythonProcess->start("python3", QStringList() << "test.py");    // 等待最多3秒启动完成
+
+    }
+}
+
+void TomatoPage::killPythonProcess(){
+    if (pythonProcess->state() != QProcess::NotRunning) {
+        pythonProcess->kill();  // 或者 pythonProcess->terminate();
+        pythonProcess->waitForFinished();
+    }
 }

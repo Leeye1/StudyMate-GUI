@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QString>
-
+#include <QProcess>
 
 
 namespace Ui {
@@ -22,11 +22,13 @@ public:
 public:
     void timeConvert(int remainTime);
     void showTomato(int tomatoNum);
+    void createPythonProcess();
+    void killPythonProcess();
 
 signals:
     void back();
     void tomatoDurationChanged(int duration);
-    void finishPomodoro();
+    void updateData();
 
 private slots:
     void startPomodoro();    // 开始番茄钟
@@ -43,13 +45,16 @@ private:
     int remainBreakSecond;
     int currentDuration;
 
-
+    bool isUpdate;
     bool isRunning;//检查番茄钟是否在运行的函数
+    bool isPythonStarted;
 
     QString timeString;
     QString tomatoString="番茄数：0";
 
     int tomatoNum=0;
+
+    QProcess *pythonProcess;
 
 
 };

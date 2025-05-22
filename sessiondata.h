@@ -19,5 +19,4 @@ struct FocusSession {
 };
 
 
-
 #endif // SESSIONDATA_H
