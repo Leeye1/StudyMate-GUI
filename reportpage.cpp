@@ -12,6 +12,7 @@ ReportPage::ReportPage(QWidget *parent)
     , ui(new Ui::ReportPage)
 {
     ui->setupUi(this);
+    this->showFullScreen();
     loadDataFromJson("data.json");
     updateTotalStatsTable();
     updateTodayStatsTable();
