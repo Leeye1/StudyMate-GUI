@@ -9,9 +9,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->showMaximized();
     this->tomatoPage= new TomatoPage();
     this->reportPage= new ReportPage();
+    this->reportPage->hide();
+    this->tomatoPage->hide();
+    this->showMaximized();
     connect(tomatoPage, &TomatoPage::tomatoDurationChanged, reportPage, &ReportPage::setTomatoDuration);
     connect(tomatoPage, &TomatoPage::updateData, reportPage, &ReportPage::updateJSON);
     //界面交互逻辑
