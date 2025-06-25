@@ -44,10 +44,12 @@ void ReportPage::loadDataFromJson(const QString& path)
 
         ui->tableReport->setItem(i, 0, new QTableWidgetItem(s.datetime));
         ui->tableReport->setItem(i, 1, new QTableWidgetItem(QString::number(s.duration_minutes)));
-        ui->tableReport->setItem(i, 2, new QTableWidgetItem(QString::number(s.distractions.action1)));
-        ui->tableReport->setItem(i, 3, new QTableWidgetItem(QString::number(s.distractions.action2)));
-        ui->tableReport->setItem(i, 4, new QTableWidgetItem(QString::number(s.distractions.action3)));
-        ui->tableReport->setItem(i, 5, new QTableWidgetItem(effective ? "✔" : "✘"));
+        ui->tableReport->setItem(i, 2, new QTableWidgetItem(QString::number(s.distractions.action0)));
+        ui->tableReport->setItem(i, 3, new QTableWidgetItem(QString::number(s.distractions.action1)));
+        ui->tableReport->setItem(i, 4, new QTableWidgetItem(QString::number(s.distractions.action2)));
+        ui->tableReport->setItem(i, 5, new QTableWidgetItem(QString::number(s.distractions.action3)));
+        ui->tableReport->setItem(i, 6, new QTableWidgetItem(QString::number(s.distractions.action4)));
+        ui->tableReport->setItem(i, 7, new QTableWidgetItem(effective ? "✔" : "✘"));
     }
 
     ui->tableReport->horizontalHeader()->setStretchLastSection(true);
@@ -80,9 +82,11 @@ struct FocusSession {
 
     DistractionData distraction = JsonHandler::readDistractionFromFile("temp_distraction.json");
     session.focus_minutes = tomatoDuration - distraction.total_time;
+    session.distractions.action0 = distraction.action0;
     session.distractions.action1 = distraction.action1;
     session.distractions.action2 = distraction.action2;
     session.distractions.action3 = distraction.action3;
+    session.distractions.action4 = distraction.action4;
     session.distractions.total_time = distraction.total_time;
 
     JsonHandler::appendSession("data.json", session);
@@ -112,17 +116,21 @@ void ReportPage::updateTotalStatsTable(){
     int totalFocus = 0;
     int sessionCount = sessions.size();
 
+    int totalAction0 = 0;
     int totalAction1 = 0;
     int totalAction2 = 0;
     int totalAction3 = 0;
+    int totalAction4 = 0;
 
     for (const FocusSession& s : sessions) {
         totalDuration += s.duration_minutes;
         totalFocus += s.focus_minutes;
 
+        totalAction0 += s.distractions.action0;
         totalAction1 += s.distractions.action1;
         totalAction2 += s.distractions.action2;
         totalAction3 += s.distractions.action3;
+        totalAction4 += s.distractions.action4;
     }
 
     double avgDuration = sessionCount > 0 ? static_cast<double>(totalDuration) / sessionCount : 0;
@@ -136,10 +144,12 @@ void ReportPage::updateTotalStatsTable(){
     ui->totalReport->setItem(0, 0, new QTableWidgetItem(QString::number(totalDuration)));
     ui->totalReport->setItem(0, 1, new QTableWidgetItem(QString::number(totalFocus)));
     ui->totalReport->setItem(0, 2, new QTableWidgetItem(QString::number(avgDuration, 'f', 2)));
-    ui->totalReport->setItem(0, 3, new QTableWidgetItem(QString::number(totalAction1)));
-    ui->totalReport->setItem(0, 4, new QTableWidgetItem(QString::number(totalAction2)));
-    ui->totalReport->setItem(0, 5, new QTableWidgetItem(QString::number(totalAction3)));
-    ui->totalReport->setItem(0, 6, new QTableWidgetItem(QString::number(efficiency, 'f', 2) + "%"));
+    ui->totalReport->setItem(0, 3, new QTableWidgetItem(QString::number(totalAction0)));
+    ui->totalReport->setItem(0, 4, new QTableWidgetItem(QString::number(totalAction1)));
+    ui->totalReport->setItem(0, 5, new QTableWidgetItem(QString::number(totalAction2)));
+    ui->totalReport->setItem(0, 6, new QTableWidgetItem(QString::number(totalAction3)));
+    ui->totalReport->setItem(0, 7, new QTableWidgetItem(QString::number(totalAction4)));
+    ui->totalReport->setItem(0, 8, new QTableWidgetItem(QString::number(efficiency, 'f', 2) + "%"));
 }
 
 void ReportPage::updateTodayStatsTable() {
@@ -147,9 +157,11 @@ void ReportPage::updateTodayStatsTable() {
 
     int todayDuration = 0;
     int todayFocus = 0;
+    int totalAction0 = 0;
     int totalAction1 = 0;
     int totalAction2 = 0;
     int totalAction3 = 0;
+    int totalAction4 = 0;
 
     QDate today = QDate::currentDate();
 
@@ -161,10 +173,11 @@ void ReportPage::updateTodayStatsTable() {
         if (date == today) {
             todayDuration += s.duration_minutes;
             todayFocus += s.focus_minutes;
-
+            totalAction0 += s.distractions.action0;
             totalAction1 += s.distractions.action1;
             totalAction2 += s.distractions.action2;
             totalAction3 += s.distractions.action3;
+            totalAction4 += s.distractions.action4;
         }
     }
 
@@ -177,9 +190,11 @@ void ReportPage::updateTodayStatsTable() {
     // 插入数据
     ui->todayReport->setItem(0, 0, new QTableWidgetItem(QString::number(todayDuration)));
     ui->todayReport->setItem(0, 1, new QTableWidgetItem(QString::number(todayFocus)));
-    ui->todayReport->setItem(0, 2, new QTableWidgetItem(QString::number(totalAction1)));
-    ui->todayReport->setItem(0, 3, new QTableWidgetItem(QString::number(totalAction2)));
-    ui->todayReport->setItem(0, 4, new QTableWidgetItem(QString::number(totalAction3)));
-    ui->todayReport->setItem(0, 5, new QTableWidgetItem(QString::number(efficiency, 'f', 2) + "%"));
+    ui->todayReport->setItem(0, 2, new QTableWidgetItem(QString::number(totalAction0)));
+    ui->todayReport->setItem(0, 3, new QTableWidgetItem(QString::number(totalAction1)));
+    ui->todayReport->setItem(0, 4, new QTableWidgetItem(QString::number(totalAction2)));
+    ui->todayReport->setItem(0, 5, new QTableWidgetItem(QString::number(totalAction3)));
+    ui->todayReport->setItem(0, 6, new QTableWidgetItem(QString::number(totalAction4)));
+    ui->todayReport->setItem(0, 7, new QTableWidgetItem(QString::number(efficiency, 'f', 2) + "%"));
 }
 

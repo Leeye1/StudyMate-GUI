@@ -63,17 +63,22 @@
        </column>
        <column>
         <property name="text">
-         <string>分身动作1</string>
+         <string>吃手指</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>分神动作2</string>
+         <string>挠头发</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>分神动作3</string>
+         <string>玩手机</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>发呆</string>
         </property>
        </column>
        <column>
@@ -106,17 +111,27 @@
        </column>
        <column>
         <property name="text">
-         <string>分神动作1</string>
+         <string>不在座位</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>分神动作2</string>
+         <string>吃手指</string>
         </property>
        </column>
        <column>
         <property name="text">
-         <string>分神动作3</string>
+         <string>挠头发</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>玩手机</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>发呆</string>
         </property>
        </column>
        <column>
@@ -140,7 +155,7 @@
       <bool>true</bool>
      </property>
      <property name="columnCount">
-      <number>6</number>
+      <number>8</number>
      </property>
      <column>
       <property name="text">
@@ -154,17 +169,27 @@
      </column>
      <column>
       <property name="text">
-       <string>分神1</string>
+       <string>不在座位</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>分神2</string>
+       <string>吃手指</string>
       </property>
      </column>
      <column>
       <property name="text">
-       <string>分神3</string>
+       <string>挠头发</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>玩手机</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>发呆</string>
       </property>
      </column>
      <column>

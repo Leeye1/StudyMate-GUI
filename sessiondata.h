@@ -5,9 +5,11 @@
 #include <QString>
 
 struct DistractionData {
+    int action0 = 0;
     int action1 = 0;//行为1的分神次数
     int action2 = 0;
     int action3 = 0;
+    int action4 = 0;
     int total_time = 0;//所有分神动作的累积分神时间
 };
 
