@@ -4,6 +4,9 @@
 #include <QDebug>
 #include <QDateTime>
 
+/*在loadDataFromJson中有一个专注有效性判断需要完善
+ *
+ */
 ReportPage::ReportPage(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::ReportPage)
@@ -20,6 +23,13 @@ ReportPage::~ReportPage()
     delete ui;
 }
 
+void ReportPage::updateJSON(){
+    saveSession();//->append session
+    updateTotalStatsTable();
+    updateTodayStatsTable();
+    loadDataFromJson("data.json");
+}
+
 void ReportPage::loadDataFromJson(const QString& path)
 {
     QList<FocusSession> sessions = JsonHandler::readJson(path);
@@ -29,7 +39,7 @@ void ReportPage::loadDataFromJson(const QString& path)
         const FocusSession& s = sessions[i];
 
         // 有效性判断逻辑：专注时长 > 90% 则为“有效” 后面还需要增加检测逻辑
-        bool effective = (s.focus_minutes >= 0.9 * s.duration_minutes);
+        effective = (s.focus_minutes >= 0.9 * s.duration_minutes);
 
         ui->tableReport->setItem(i, 0, new QTableWidgetItem(s.datetime));
         ui->tableReport->setItem(i, 1, new QTableWidgetItem(QString::number(s.duration_minutes)));
@@ -60,6 +70,10 @@ struct FocusSession {
     DistractionData distractions;//distractions: 嵌套了上面定义的 DistractionData。
 };
      */
+    /*这个函数读取了当前时间，番茄钟持续时间
+     * 再从temp_distraction.json文件中读取分神数据
+     * 然后把DIstraction data和FocusSession的data都处理完后把数据加载到total_time.json
+     */
     session.datetime = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm ddd");
     session.duration_minutes = tomatoDuration;
 
@@ -82,18 +96,7 @@ void ReportPage::setTomatoDuration(int duration)
 void ReportPage::on_testButton_clicked()
 {
     tomatoDuration = 25;  // 模拟25分钟的番茄时长，或者用你自己的变量赋值
-    saveSession();
-    updateTotalStatsTable();
-    updateTodayStatsTable();
-    // 调用加载函数刷新表格
-    loadDataFromJson("data.json");
-}
-
-void ReportPage::updateJSON(){
-    saveSession();//->append session
-    updateTotalStatsTable();
-    updateTodayStatsTable();
-    loadDataFromJson("data.json");
+    updateJSON();
 }
 
 void ReportPage::on_returnButton_clicked()

@@ -55,6 +55,7 @@ private:
     int tomatoNum=0;
 
     QProcess *pythonProcess;
+    QString filepath="test.py";
 
 
 };

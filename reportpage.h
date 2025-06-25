@@ -32,6 +32,7 @@ private slots:
 private:
     Ui::ReportPage *ui;
     int tomatoDuration = 0;
+    bool effective;
 };
 
 #endif // REPORTPAGE_H

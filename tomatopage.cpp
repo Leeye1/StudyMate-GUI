@@ -3,10 +3,13 @@
 #include "quotewidget.h"
 #include <QMessageBox>
 
-//时间加框和调整各个元素的字体颜色
-//提示音
-//有个番茄钟
-//layout 自动扩展
+
+/*1. 在setTime函数里需要在调试结束以后把remainWorkTime调整为60
+ *2. python脚本路径在createPythonProcess里面调整
+ *3. 目前暂时取消了检查python脚本启动是否成功的检查
+ *4. endPomodoro的如果结束时剩余时间大于0就不更新时间的判断可优化也可以不优化
+
+*/
 TomatoPage::TomatoPage(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::TomatoPage)
@@ -34,15 +37,15 @@ TomatoPage::TomatoPage(QWidget *parent)
     //intialize python process
     pythonProcess = new QProcess(this);
     pythonProcess->setProcessChannelMode(QProcess::MergedChannels);
-    connect(pythonProcess, &QProcess::readyReadStandardOutput, [=]() {
-        QString output = pythonProcess->readAll();
-        qDebug() << "Python 输出:" << output;
+//    connect(pythonProcess, &QProcess::readyReadStandardOutput, [=]() {
+//        QString output = pythonProcess->readAll();
+//        //qDebug() << "Python 输出:" << output;
 
-        if (output.contains("__PYTHON_STARTED__")) {
-            // 可以设置一个标志 isPythonStarted = true;
-            isPythonStarted=true;
-        }
-    });
+//        if (output.contains("__PYTHON_STARTED__")) {
+//            // 可以设置一个标志 isPythonStarted = true;
+//            isPythonStarted=true;
+//        }
+//    });
 
     connect(ui->startButton,&QPushButton::clicked,this,&TomatoPage::startPomodoro);
     //可以做一个选择时间的部分，这个逻辑应该在start部分检验
@@ -122,8 +125,7 @@ void TomatoPage::timeConvert(int remainSecond){
     // minutes = remainSecond/60;
     // seconds = remainSecond%60;
 
-    // QTime time(0, minutes, seconds);  // 创建一个 QTime 对象，时=0，分=minutes，秒=seconds
-    // timeString = time.toString("mm:ss");  // 输出格式为 例如 "25:00"
+
     int hours = remainSecond / 3600;
     int minutes = (remainSecond % 3600) / 60;
     int seconds = remainSecond % 60;
@@ -148,7 +150,7 @@ void TomatoPage::setTime(){
     //获取combo box数据
     QString selectedText = ui->workTimeComboBox->currentText(); // 例如 "25 分钟"
     currentDuration = selectedText.toInt();
-    remainWorkSecond= currentDuration * 1;//这里暂时改成1 然后ui暂时改成3s这样方便调试
+    remainWorkSecond= currentDuration * 1;//这里暂时改成1 然后ui暂时改成3s这样方便调试,之后调整为60
     timeConvert(remainWorkSecond);
     emit tomatoDurationChanged(currentDuration);//设定了时间之后我就传递
 
@@ -157,7 +159,7 @@ void TomatoPage::setTime(){
 void TomatoPage::createPythonProcess(){
 
     if (pythonProcess->state() == QProcess::NotRunning) {
-        pythonProcess->start("python3", QStringList() << "test.py");    // 等待最多3秒启动完成
+        pythonProcess->start("python3", QStringList() << filepath);    // 等待最多3秒启动完成
 
     }
 }
