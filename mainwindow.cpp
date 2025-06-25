@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->tomatoButton,&QPushButton::clicked,[=](){
         //把主窗口隐藏，第二个窗口界面显示
         this->hide();
+        this->reportPage->hide();
         this->tomatoPage->show();
     });
     connect(this->tomatoPage,&TomatoPage::back,[=](){
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->reportButton,&QPushButton::clicked,[=](){
         //把主窗口隐藏，第二个窗口界面显示
         this->hide();
+        this->tomatoPage->hide();
         this->reportPage->show();
     });
     connect(this->reportPage,&ReportPage::back,[=](){
@@ -41,3 +43,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_quitButton_clicked()
+{
+    QApplication::quit();
+}

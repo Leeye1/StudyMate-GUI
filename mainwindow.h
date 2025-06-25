@@ -26,6 +26,9 @@ public:
     MonitorPage* monitorPage;
 
 
+private slots:
+    void on_quitButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 

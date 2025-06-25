@@ -144,6 +144,13 @@
       </property>
      </spacer>
     </item>
+    <item row="2" column="2">
+     <widget class="QPushButton" name="quitButton">
+      <property name="text">
+       <string>退出</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
