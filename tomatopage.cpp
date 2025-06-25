@@ -15,7 +15,7 @@ TomatoPage::TomatoPage(QWidget *parent)
     , ui(new Ui::TomatoPage)
 {
     ui->setupUi(this);
-    this->showFullScreen();
+    this->showMaximized();
     ui->timeLabel->setText("开始专注吧！");
     ui->tomatoLabel->setText(tomatoString);
     // 居中显示
