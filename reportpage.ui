@@ -34,114 +34,125 @@
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QTableWidget" name="totalReport">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <column>
-        <property name="text">
-         <string>累计番茄时长</string>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>200</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>统计时间表</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QTableWidget" name="totalReport">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>累计专注时长</string>
+        <property name="autoFillBackground">
+         <bool>false</bool>
         </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>平均专注时长</string>
+        <column>
+         <property name="text">
+          <string>累计番茄时长</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>累计专注时长</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>平均专注时长</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>吃手指</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>挠头发</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>玩手机</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>发呆</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>有效率</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="todayReport">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>吃手指</string>
+        <property name="autoFillBackground">
+         <bool>false</bool>
         </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>挠头发</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>玩手机</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>发呆</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>有效率</string>
-        </property>
-       </column>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTableWidget" name="todayReport">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <column>
-        <property name="text">
-         <string>今日番茄时长</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>今日专注时长</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>不在座位</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>吃手指</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>挠头发</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>玩手机</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>发呆</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>有效率</string>
-        </property>
-       </column>
-      </widget>
-     </item>
-    </layout>
+        <column>
+         <property name="text">
+          <string>今日番茄时长</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>今日专注时长</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>不在座位</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>吃手指</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>挠头发</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>玩手机</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>发呆</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>有效率</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item>
     <widget class="QTableWidget" name="tableReport">
