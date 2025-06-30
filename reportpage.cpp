@@ -13,6 +13,7 @@ ReportPage::ReportPage(QWidget *parent)
 {
     ui->setupUi(this);
     this->showMaximized();
+    pythonProcess = new QProcess(this);
     loadDataFromJson(dataPath);
     updateTotalStatsTable();
     updateTodayStatsTable();
