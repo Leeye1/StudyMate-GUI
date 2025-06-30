@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
         //把主窗口隐藏，第二个窗口界面显示
         this->hide();
         this->reportPage->hide();
-        this->tomatoPage->show();
+        this->tomatoPage->showMaximized();
     });
     connect(this->tomatoPage,&TomatoPage::back,[=](){
         this->tomatoPage->hide();
@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
         //把主窗口隐藏，第二个窗口界面显示
         this->hide();
         this->tomatoPage->hide();
-        this->reportPage->show();
+        this->reportPage->showMaximized();
     });
     connect(this->reportPage,&ReportPage::back,[=](){
         this->reportPage->hide();
