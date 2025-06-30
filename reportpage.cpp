@@ -114,7 +114,7 @@ struct FocusSession {
     session.distractions.action2 = distraction.action2;
     session.distractions.action3 = distraction.action3;
     session.distractions.action4 = distraction.action4;
-    session.distractions.total_time = distraction.total_time;
+    session.distractions.total_time = (int) distraction.total_time/60;
 
     JsonHandler::appendSession(dataPath, session);
 }
