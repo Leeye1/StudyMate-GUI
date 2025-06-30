@@ -178,7 +178,7 @@ void ReportPage::updateTotalStatsTable(){
     ui->totalReport->setItem(0, 5, new QTableWidgetItem(QString::number(totalAction2)));
     ui->totalReport->setItem(0, 6, new QTableWidgetItem(QString::number(totalAction3)));
     ui->totalReport->setItem(0, 7, new QTableWidgetItem(QString::number(totalAction4)));
-    ui->totalReport->setItem(0, 8, new QTableWidgetItem(QString::number(efficiency, 'f', 2) + "%"));
+    ui->totalReport->setItem(0, 8, new QTableWidgetItem(QString::number(s.efficiency, 'f', 2) + "%"));
 }
 
 void ReportPage::updateTodayStatsTable() {
@@ -224,6 +224,6 @@ void ReportPage::updateTodayStatsTable() {
     ui->todayReport->setItem(0, 4, new QTableWidgetItem(QString::number(totalAction2)));
     ui->todayReport->setItem(0, 5, new QTableWidgetItem(QString::number(totalAction3)));
     ui->todayReport->setItem(0, 6, new QTableWidgetItem(QString::number(totalAction4)));
-    ui->todayReport->setItem(0, 7, new QTableWidgetItem(QString::number(efficiency, 'f', 2) + "%"));
+    ui->todayReport->setItem(0, 7, new QTableWidgetItem(QString::number(s.efficiency, 'f', 2) + "%"));
 }
 
