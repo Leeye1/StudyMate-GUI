@@ -35,7 +35,8 @@ private:
     Ui::ReportPage *ui;
     int tomatoDuration = 0;
     bool effective;
-    QString dataPath="../dataTransport/data.json";
+    //QString dataPath="../dataTransport/data.json";
+    QString dataPath="data.json";
     QString cloudPath="../dataTransport/cloud1.py";
     QProcess *pythonProcess;
 };
