@@ -4,10 +4,11 @@
 #include <QMessageBox>
 
 
-/*1. 在setTime函数里需要在调试结束以后把remainWorkTime调整为60
+/*1. 在setTime函数里需要在调试结束以后把remainWorkTime调整为60以改为分钟
  *2. python脚本路径在createPythonProcess里面调整，filepath变量在tomato.h
  *3. 目前暂时取消了检查python脚本启动是否成功的检查
  *4. endPomodoro的如果结束时剩余时间大于0就不更新时间的判断可优化也可以不优化
+ *5. remainBreakTime设置为15s
 
 */
 TomatoPage::TomatoPage(QWidget *parent)
@@ -69,7 +70,7 @@ void TomatoPage::startPomodoro(){
     if(!isPythonStarted)
     isRunning=true;
     setTime();
-    remainBreakSecond=3;
+    remainBreakSecond=15;
     //starting timing
     timer->start(1000);
     ui->timeLabel->setText("剩余专注时长: "+timeString);
