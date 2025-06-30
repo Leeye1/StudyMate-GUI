@@ -40,7 +40,28 @@ void ReportPage::loadDataFromJson(const QString& path)
         const FocusSession& s = sessions[i];
 
         // 有效性判断逻辑：专注时长 > 90% 则为“有效” 后面还需要增加检测逻辑
-        effective = (s.focus_minutes >= 0.9 * s.duration_minutes);
+        int distractCount = s.distractions.action0 +
+                            s.distractions.action1 +
+                            s.distractions.action2 +
+                            s.distractions.action3 +
+                            s.distractions.action4 ;
+        switch(tomatoDuration){
+        case 25:
+            effective = (distractCount>=4) ? false:(s.focus_minutes >= 0.9 * s.duration_minutes);
+            break;
+        case 45:
+            effective = (distractCount>=5) ? false:(s.focus_minutes >= 0.9 * s.duration_minutes);
+            break;
+        case 60:
+            effective = (distractCount>=6) ? false:(s.focus_minutes >= 0.9 * s.duration_minutes);
+            break;
+        case 90:
+            effective = (distractCount>=7) ? false:(s.focus_minutes >= 0.9 * s.duration_minutes);
+            break;
+        default:
+            effective = (s.focus_minutes >= 0.9 * s.duration_minutes);
+        }
+
 
         ui->tableReport->setItem(i, 0, new QTableWidgetItem(s.datetime));
         ui->tableReport->setItem(i, 1, new QTableWidgetItem(QString::number(s.duration_minutes)));
