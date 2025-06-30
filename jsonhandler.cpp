@@ -31,6 +31,7 @@ QList<FocusSession> JsonHandler::readJson(const QString& filePath)//参数是文
         session.datetime = obj["datetime"].toString();
         session.duration_minutes = obj["duration_minutes"].toInt();
         session.focus_minutes = obj["focus_minutes"].toInt();
+        session.effective=obj["effective"].toBool();
 
         QJsonObject dis = obj["distractions"].toObject();
         session.distractions.action0 = dis["action0"].toInt();
@@ -58,11 +59,13 @@ void JsonHandler::writeJson(const QString& filePath, const QList<FocusSession>& 
         dis["action3"] = session.distractions.action3;
         dis["action4"] = session.distractions.action4;
         dis["total_time"] = session.distractions.total_time;
+
     //把每条记录转成 JSON 对象后放进数组中。
         QJsonObject obj;
         obj["datetime"] = session.datetime;
         obj["duration_minutes"] = session.duration_minutes;
         obj["focus_minutes"] = session.focus_minutes;
+        obj["effective"]=session.effective;
         obj["distractions"] = dis;
 
         history.append(obj);

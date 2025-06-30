@@ -151,6 +151,7 @@ void ReportPage::updateTotalStatsTable(){
     int totalAction4 = 0;
 
     for (const FocusSession& s : sessions) {
+        if(s.effective==false) continue;
         totalDuration += s.duration_minutes;
         totalFocus += s.focus_minutes;
 
@@ -197,7 +198,7 @@ void ReportPage::updateTodayStatsTable() {
         // 解析 datetime 日期部分，例如 "2025-05-22 20:00 Thu"
         QString datePart = s.datetime.section(' ', 0, 0);  // 得到 "2025-05-22"
         QDate date = QDate::fromString(datePart, "yyyy-MM-dd");
-
+        if (s.effective==false) continue;
         if (date == today) {
             todayDuration += s.duration_minutes;
             todayFocus += s.focus_minutes;
