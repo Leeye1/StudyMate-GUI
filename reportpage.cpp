@@ -98,16 +98,16 @@ struct FocusSession {
                         distraction.action4 ;
     switch(tomatoDuration){
     case 25:
-        session.effective = (distractCount>=4) ? false:(session.focus_minutes >= 0.9 * session.duration_minutes);
+        session.effective = (distractCount>=4) ? false:(session.focus_minutes >= 0.1 * session.duration_minutes);
         break;
     case 45:
-        session.effective = (distractCount>=5) ? false:(session.focus_minutes >= 0.9 * session.duration_minutes);
+        session.effective = (distractCount>=5) ? false:(session.focus_minutes >= 0.1 * session.duration_minutes);
         break;
     case 60:
-        session.effective = (distractCount>=6) ? false:(session.focus_minutes >= 0.9 * session.duration_minutes);
+        session.effective = (distractCount>=6) ? false:(session.focus_minutes >= 0.1 * session.duration_minutes);
         break;
     case 90:
-        session.effective = (distractCount>=7) ? false:(session.focus_minutes >= 0.9 * session.duration_minutes);
+        session.effective = (distractCount>=7) ? false:(session.focus_minutes >= 0.1 * session.duration_minutes);
         break;
     default:
         session.effective = (session.focus_minutes >= 0.9 * session.duration_minutes);

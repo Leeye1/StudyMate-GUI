@@ -162,7 +162,6 @@ void TomatoPage::createPythonProcess(){
 
     if (pythonProcess->state() == QProcess::NotRunning) {
         pythonProcess->start("python3", QStringList() << filepath);    // 等待最多3秒启动完成
-
     }
 }
 
