@@ -33,7 +33,7 @@ private:
     Ui::ReportPage *ui;
     int tomatoDuration = 0;
     bool effective;
-    QString dataPath="/dataTransport/data.json";
+    QString dataPath="../dataTransport/data.json";
 };
 
 #endif // REPORTPAGE_H
