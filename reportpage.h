@@ -2,6 +2,7 @@
 #define REPORTPAGE_H
 
 #include <QWidget>
+#include <QProcess>
 
 namespace Ui {
 class ReportPage;
@@ -36,6 +37,7 @@ private:
     bool effective;
     QString dataPath="../dataTransport/data.json";
     QString cloudPath="../dataTransport/cloud1.py";
+    QProcess *pythonProcess;
 };
 
 #endif // REPORTPAGE_H
