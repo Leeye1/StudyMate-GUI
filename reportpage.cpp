@@ -29,6 +29,7 @@ void ReportPage::updateJSON(){
     updateTotalStatsTable();
     updateTodayStatsTable();
     loadDataFromJson(dataPath);
+    callUpdataCloud();
 }
 
 void ReportPage::loadDataFromJson(const QString& path)
@@ -75,6 +76,10 @@ void ReportPage::loadDataFromJson(const QString& path)
 
     ui->tableReport->horizontalHeader()->setStretchLastSection(true);
     ui->tableReport->resizeColumnsToContents();
+}
+
+void ReportPage::callUpdataCloud(){
+    pythonProcess->start("python3", QStringList() << cloudPath);
 }
 
 void ReportPage::saveSession() {

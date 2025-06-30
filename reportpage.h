@@ -24,6 +24,7 @@ public:
     void saveSession();
     void updateTotalStatsTable();
     void updateTodayStatsTable();
+    void callUpdataCloud();
 private slots:
     void on_testButton_clicked();
 
@@ -34,6 +35,7 @@ private:
     int tomatoDuration = 0;
     bool effective;
     QString dataPath="../dataTransport/data.json";
+    QString dataPath="../dataTransport/cloud1.py";
 };
 
 #endif // REPORTPAGE_H
