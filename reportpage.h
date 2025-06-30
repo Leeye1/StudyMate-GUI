@@ -35,7 +35,7 @@ private:
     int tomatoDuration = 0;
     bool effective;
     QString dataPath="../dataTransport/data.json";
-    QString dataPath="../dataTransport/cloud1.py";
+    QString cloudPath="../dataTransport/cloud1.py";
 };
 
 #endif // REPORTPAGE_H
