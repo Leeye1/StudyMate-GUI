@@ -17,6 +17,7 @@ struct FocusSession {
     QString datetime;//日期+时间
     int duration_minutes = 0;//本次番茄钟时长
     int focus_minutes = 0;//本次专注时间等于durationtime-totaltime
+    bool effective;
     DistractionData distractions;//distractions: 嵌套了上面定义的 DistractionData。
 };
 

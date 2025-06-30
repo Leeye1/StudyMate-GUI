@@ -39,7 +39,7 @@ void ReportPage::loadDataFromJson(const QString& path)
     ui->tableReport->setRowCount(sessions.size());
 
     for (int i = 0; i < sessions.size(); ++i) {
-        const FocusSession& s = sessions[i];
+        FocusSession& s = sessions[i];
 
         // 有效性判断逻辑：专注时长 > 90% 则为“有效” 后面还需要增加检测逻辑
         int distractCount = s.distractions.action0 +
@@ -63,6 +63,7 @@ void ReportPage::loadDataFromJson(const QString& path)
         default:
             effective = (s.focus_minutes >= 0.9 * s.duration_minutes);
         }
+        s.effective=effective;
 
 
         ui->tableReport->setItem(i, 0, new QTableWidgetItem(s.datetime));
@@ -72,7 +73,7 @@ void ReportPage::loadDataFromJson(const QString& path)
         ui->tableReport->setItem(i, 4, new QTableWidgetItem(QString::number(s.distractions.action2)));
         ui->tableReport->setItem(i, 5, new QTableWidgetItem(QString::number(s.distractions.action3)));
         ui->tableReport->setItem(i, 6, new QTableWidgetItem(QString::number(s.distractions.action4)));
-        ui->tableReport->setItem(i, 7, new QTableWidgetItem(effective ? "✔" : "✘"));
+        ui->tableReport->setItem(i, 7, new QTableWidgetItem(s.effective ? "✔" : "✘"));
     }
 
     ui->tableReport->horizontalHeader()->setStretchLastSection(true);
