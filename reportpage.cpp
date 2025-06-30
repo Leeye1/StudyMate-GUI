@@ -13,7 +13,7 @@ ReportPage::ReportPage(QWidget *parent)
 {
     ui->setupUi(this);
     this->showMaximized();
-    loadDataFromJson("data.json");
+    loadDataFromJson(dataPath);
     updateTotalStatsTable();
     updateTodayStatsTable();
 
@@ -28,7 +28,7 @@ void ReportPage::updateJSON(){
     saveSession();//->append session
     updateTotalStatsTable();
     updateTodayStatsTable();
-    loadDataFromJson("data.json");
+    loadDataFromJson(dataPath);
 }
 
 void ReportPage::loadDataFromJson(const QString& path)
@@ -110,7 +110,7 @@ struct FocusSession {
     session.distractions.action4 = distraction.action4;
     session.distractions.total_time = distraction.total_time;
 
-    JsonHandler::appendSession("data.json", session);
+    JsonHandler::appendSession(dataPath, session);
 }
 
 void ReportPage::setTomatoDuration(int duration)
@@ -131,7 +131,7 @@ void ReportPage::on_returnButton_clicked()
 }
 
 void ReportPage::updateTotalStatsTable(){
-    QList<FocusSession> sessions = JsonHandler::readJson("data.json");
+    QList<FocusSession> sessions = JsonHandler::readJson(dataPath);
 
     int totalDuration = 0;
     int totalFocus = 0;
@@ -174,7 +174,7 @@ void ReportPage::updateTotalStatsTable(){
 }
 
 void ReportPage::updateTodayStatsTable() {
-    QList<FocusSession> sessions = JsonHandler::readJson("data.json");
+    QList<FocusSession> sessions = JsonHandler::readJson(dataPath);
 
     int todayDuration = 0;
     int todayFocus = 0;
